@@ -9,16 +9,6 @@ public class MyStack<T> {
         return elements;
     }
 
-    public int getStackSize() {
-        return this.stackSize;
-    }
-
-    public void setStackSize(int stackSize) {
-        this.stackSize = stackSize;
-    }
-
-
-
     public MyStack() {
         elements = (T[]) new Object[2];
         stackSize = 0;
@@ -68,8 +58,6 @@ public class MyStack<T> {
         return t;
     }
 
-
-
     @Override
     public String toString() {
         if (this.stackSize == 0) {
@@ -79,7 +67,7 @@ public class MyStack<T> {
         StringBuilder stringBuilder = new StringBuilder();
         MyStack myStack = new MyStack<T>();
 
-        for (int i = 0; i < this.stackSize; i++) {
+        for (int i = this.stackSize - 1; i >= 0; i--) {
             elements[i] = getElements()[i];
             stringBuilder.append(elements[i]).append(", ");
         }
