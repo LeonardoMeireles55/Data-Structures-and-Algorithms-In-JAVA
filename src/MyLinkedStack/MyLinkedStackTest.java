@@ -2,7 +2,7 @@ package MyLinkedStack;
 
 public class MyLinkedStackTest {
     public static void main(String[] args) {
-        MyLinkedStack<Integer> myLinkedStack = new MyLinkedStack<>();
+        MyLinkedStack<Integer> myLinkedStack = new MyLinkedStack<Integer>();
 
         myLinkedStack.push(1);
         myLinkedStack.push(2);

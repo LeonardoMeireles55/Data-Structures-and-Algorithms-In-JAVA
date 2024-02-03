@@ -1,4 +1,4 @@
-package LinkedList;
+package MyLinkedList;
 
 
 public class LinkedListTest {
@@ -16,7 +16,7 @@ public class LinkedListTest {
     }
 
     public static void initialPush() {
-        LinkedList<String> list = new LinkedList<>();
+        LinkedList<String> list = new LinkedList<String>();
 
         list.add("a");
         list.add("b");

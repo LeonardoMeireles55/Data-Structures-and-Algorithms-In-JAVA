@@ -1,4 +1,4 @@
-package LinkedList;
+package MyLinkedList;
 
 public class NodeForList<T> {
     private T element;

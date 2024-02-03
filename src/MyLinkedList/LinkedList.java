@@ -1,4 +1,4 @@
-package LinkedList;
+package MyLinkedList;
 
 public class LinkedList<T> {
 
@@ -70,7 +70,7 @@ public class LinkedList<T> {
             this.endNodeForList = nodeForList;
 
         } else {
-            NodeForList<T> nodeForList = new NodeForList<>(element, initialNodeForList);
+            NodeForList<T> nodeForList = new NodeForList<T>(element, initialNodeForList);
             this.initialNodeForList = nodeForList;
         }
         this.listSize++;
@@ -89,7 +89,7 @@ public class LinkedList<T> {
         } else {
             NodeForList<T> previousNode = this.searchByPosition(position);
             NodeForList<T> nextNode = previousNode.getNext();
-            NodeForList<T> newNode = new NodeForList<>(element, nextNode);
+            NodeForList<T> newNode = new NodeForList<T>(element, nextNode);
             previousNode.setNext(newNode);
             this.listSize++;
         }
