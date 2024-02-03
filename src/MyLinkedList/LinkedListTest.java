@@ -4,6 +4,7 @@ package MyLinkedList;
 public class LinkedListTest {
     public static void main(String[] args) {
         initialPush();
+        initialTest();
 
     }
 
@@ -13,6 +14,8 @@ public class LinkedListTest {
         list.add("b");
         list.add("c");
         list.add("d");
+
+        System.out.println(list);
     }
 
     public static void initialPush() {

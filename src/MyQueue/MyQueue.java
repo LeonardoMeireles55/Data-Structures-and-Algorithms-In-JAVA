@@ -1,8 +1,5 @@
 package MyQueue;
 
-import MyLinkedStack.MyLinkedStack;
-import MyStack.MyStack;
-
 public class MyQueue<Element> {
     private NodeForQueue currentNode;
     private NodeForQueue previousNode;
@@ -35,7 +32,6 @@ public class MyQueue<Element> {
     }
 
     public void dequeue() {
-        Element element = currentNode.element;
         currentNode = currentNode.nextNode;
         size--;
         if(isEmpty()) {
