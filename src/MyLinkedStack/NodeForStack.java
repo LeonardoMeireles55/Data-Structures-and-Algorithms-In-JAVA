@@ -1,15 +1,15 @@
-package List;
+package MyLinkedStack;
 
-public class NodeForList<T> {
+public class NodeForStack<T> {
     private T element;
-    private NodeForList<T> next;
+    private NodeForStack<T> next;
 
-    public NodeForList(T element) {
+    public NodeForStack(T element) {
         this.element = element;
         this.next = null;
     }
 
-    public NodeForList(T element, NodeForList<T> next) {
+    public NodeForStack(T element, NodeForStack<T> next) {
         this.element = element;
         this.next = next;
     }
@@ -22,11 +22,11 @@ public class NodeForList<T> {
         this.element = element;
     }
 
-    public NodeForList<T> getNext() {
+    public NodeForStack<T> getNext() {
         return next;
     }
 
-    public void setNext(NodeForList<T> next) {
+    public void setNext(NodeForStack<T> next) {
         this.next = next;
     }
 
