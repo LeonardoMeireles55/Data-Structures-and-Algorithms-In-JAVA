@@ -8,8 +8,6 @@ public class FixedSizeQueue<T> {
 
     private int rearQueue;
 
-    private int tail;
-
     int queueSize;
 
     public FixedSizeQueue(int size) {
@@ -17,7 +15,6 @@ public class FixedSizeQueue<T> {
         frontQueue = 0;
         rearQueue = -1;
         queueSize = 0;
-        tail = 0;
     }
 
     public void enqueue(T t) {
@@ -76,7 +73,6 @@ public class FixedSizeQueue<T> {
         System.out.println(fixedSizeQueue);
         System.out.println("frontQueue: " + fixedSizeQueue.frontQueue);
         System.out.println("rearQueue: " + fixedSizeQueue.rearQueue);
-        System.out.println("tail: " + fixedSizeQueue.tail);
         System.out.println("size: " + fixedSizeQueue.queueSize);
     }
 
