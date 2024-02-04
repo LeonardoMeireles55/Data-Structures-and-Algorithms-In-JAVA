@@ -63,13 +63,6 @@ public class FixedSizeQueue<T> {
         fixedSizeQueue.dequeue();
         fixedSizeQueue.enqueue(1);
 
-
-
-
-
-
-    
-
         System.out.println(fixedSizeQueue);
         System.out.println("frontQueue: " + fixedSizeQueue.frontQueue);
         System.out.println("rearQueue: " + fixedSizeQueue.rearQueue);

@@ -48,13 +48,12 @@ public class MyQueue<Element> {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
 
-        NodeForQueue tempNode = currentNode; // Começar do início da fila
+        NodeForQueue tempNode = currentNode; 
         while (tempNode != null) {
             stringBuilder.append(tempNode.element).append(", ");
-            tempNode = tempNode.nextNode; // Avançar para o próximo nó
+            tempNode = tempNode.nextNode; 
         }
 
-        // Remover a última vírgula e espaço, se houver
         if (stringBuilder.length() > 1) {
             stringBuilder.setLength(stringBuilder.length() - 2);
         }
@@ -70,6 +69,7 @@ public class MyQueue<Element> {
         myQueue.enqueue(3);
         myQueue.enqueue(4);
         myQueue.dequeue();
+
 
         System.out.println(myQueue);
     }

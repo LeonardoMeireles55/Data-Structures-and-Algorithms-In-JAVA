@@ -1,7 +1,5 @@
 package MyStack;
 
-import MyQueue.FixedSizeQueue;
-
 public class FixedSizeStack<T> {
     private T[] elements;
     private int stackSize;
@@ -32,7 +30,7 @@ public class FixedSizeStack<T> {
         if(isEmpty()) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        return elements[--stackSize];
+        return elements[--stackSize] = null;
     }
 
     @Override
@@ -42,9 +40,8 @@ public class FixedSizeStack<T> {
         }
 
         StringBuilder stringBuilder = new StringBuilder();
-        FixedSizeStack myStack = new FixedSizeStack<T>(stackSize);
 
-        for (int i = stackSize - 1; i >= 0; i--) {
+        for (int i = elements.length - 1; i >= 0; i--) {
             stringBuilder.append(elements[i]).append(", ");
         }
         stringBuilder.setLength(stringBuilder.length() - 2);
