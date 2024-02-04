@@ -1,79 +1,55 @@
 package MyQueue;
 
-import MyStack.FixedSizeStack;
-import MyStack.MyStack;
-
-import java.util.Arrays;
 
 public class FixedSizeQueue<T> {
     private T[] elements;
 
-    private int currentElement;
+    private int frontQueue;
 
-    private int nextElement;
+    private int rearQueue;
 
     private int tail;
 
     int queueSize;
 
-
     public FixedSizeQueue(int size) {
         elements = (T[]) new Object[size];
-        currentElement = 0;
-        nextElement = 0;
+        frontQueue = 0;
+        rearQueue = -1;
         queueSize = 0;
         tail = 0;
-     }
+    }
 
-     public void enqueue(T t) {
-         if(nextElement == elements.length) {
-             nextElement = 0;
-         }
-         if(tail == elements.length) {
-             tail = 0;
-         }
-        if(queueSize == 0) {
-            elements[currentElement] = t;
-        } else if (elements[tail] == null) {
-            elements[tail] = t;
-        } else if (currentElement == elements.length-1) {
-            nextElement = 0;
-            elements[nextElement++] = t;
-        } else {
-            elements[++nextElement] = t;
-        }
-         queueSize++;
-     }
-
-
-
-    public void dequeue() {
-        if(currentElement == elements.length) {
-            currentElement = 0;
-        }
-        if(queueSize == 1) {
+    public void enqueue(T t) {
+        if (queueSize == elements.length) {
             throw new IllegalArgumentException();
         }
-        tail = currentElement;
-        elements[currentElement] = null;
-        currentElement++;
+        rearQueue = (rearQueue + 1) % elements.length;
+        elements[rearQueue] = t;
+        queueSize++;
+    }
+
+    public void dequeue() {
+        if (queueSize == 0) {
+            throw new IllegalArgumentException("Queue is empty");
+        }
+        elements[frontQueue] = null;
+        frontQueue = (frontQueue + 1) % elements.length;
         queueSize--;
     }
+
     @Override
     public String toString() {
         if (queueSize == 0) {
             return "[]";
         }
-
+    
         StringBuilder stringBuilder = new StringBuilder();
-        FixedSizeQueue<T> fixedSizeQueue = new FixedSizeQueue<T>(elements.length);
-
-        for (int i = elements.length - 1; i >= 0; i--) {
+        for (int i = frontQueue; i != rearQueue; i = (i + 1) % elements.length) {
             stringBuilder.append(elements[i]).append(", ");
         }
-        stringBuilder.setLength(stringBuilder.length() - 2);
-        System.out.println(elements.length);
-        return "[" + stringBuilder + "] ";
+        stringBuilder.append(elements[rearQueue]);  
+        return "[" + stringBuilder.toString() + "]";
     }
 
     public static void main(String[] args) {
@@ -81,37 +57,23 @@ public class FixedSizeQueue<T> {
         fixedSizeQueue.enqueue(1);
         fixedSizeQueue.enqueue(2);
         fixedSizeQueue.enqueue(3);
-        System.out.println(fixedSizeQueue); // Deve imprimir [1, 2, 3]
+    
         fixedSizeQueue.dequeue();
-        System.out.println(fixedSizeQueue); // Deve imprimir [2, 3]
-        fixedSizeQueue.enqueue(4);
-        System.out.println(fixedSizeQueue); // Deve imprimir [2, 3, 4]
+        fixedSizeQueue.dequeue();
 
+        fixedSizeQueue.enqueue(1);
+        fixedSizeQueue.enqueue(2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        fixedSizeQueue.dequeue();
+        fixedSizeQueue.enqueue(2);
+        fixedSizeQueue.dequeue();
+        fixedSizeQueue.dequeue();
 
         System.out.println(fixedSizeQueue);
-        System.out.println(fixedSizeQueue.currentElement);
-        System.out.println(fixedSizeQueue.tail);
-        System.out.println(fixedSizeQueue.nextElement);
-        System.out.println(fixedSizeQueue.queueSize);
+        System.out.println("frontQueue: " + fixedSizeQueue.frontQueue);
+        System.out.println("rearQueue: " + fixedSizeQueue.rearQueue);
+        System.out.println("tail: " + fixedSizeQueue.tail);
+        System.out.println("size: " + fixedSizeQueue.queueSize);
     }
 
 }
