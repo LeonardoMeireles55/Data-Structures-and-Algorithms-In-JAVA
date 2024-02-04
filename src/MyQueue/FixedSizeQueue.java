@@ -45,7 +45,7 @@ public class FixedSizeQueue<T> {
         }
     
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = frontQueue; i != rearQueue; i = (i + 1) % elements.length) {
+        for (int i = 0; i <= elements.length-2; i++) {
             stringBuilder.append(elements[i]).append(", ");
         }
         stringBuilder.append(elements[rearQueue]);  
@@ -57,17 +57,21 @@ public class FixedSizeQueue<T> {
         fixedSizeQueue.enqueue(1);
         fixedSizeQueue.enqueue(2);
         fixedSizeQueue.enqueue(3);
-    
         fixedSizeQueue.dequeue();
         fixedSizeQueue.dequeue();
-
+        fixedSizeQueue.dequeue();
+        fixedSizeQueue.enqueue(3);
+        fixedSizeQueue.enqueue(2);
         fixedSizeQueue.enqueue(1);
-        fixedSizeQueue.enqueue(2);
+        fixedSizeQueue.dequeue();
+        fixedSizeQueue.enqueue(1);
 
-        fixedSizeQueue.dequeue();
-        fixedSizeQueue.enqueue(2);
-        fixedSizeQueue.dequeue();
-        fixedSizeQueue.dequeue();
+
+
+
+
+
+    
 
         System.out.println(fixedSizeQueue);
         System.out.println("frontQueue: " + fixedSizeQueue.frontQueue);
