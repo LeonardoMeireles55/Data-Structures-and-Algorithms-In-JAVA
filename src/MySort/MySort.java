@@ -35,15 +35,14 @@ public class MySort {
         }
 
     public void myInsertionSort() {
-        int i;
-        int j;
-        int temp;
-        for(j = 1; j < myList.length; j++) {
-            temp = myList[j];
-            for(i = j - 1; (i >= 0) && (myList[i] > temp); i--) {
-                myList[i + 1] = myList[i];
+        for(int i = 1; i < myList.length; i++) {
+            int j = i;
+            while ((j > 0 ) && (myList[j] < myList[j -1])) {
+                int temp = myList[j];
+                myList[j] = myList[j-1];
+                myList[j-1] = temp;
+                j--;
             }
-            myList[i + 1] = temp;
         }
     }
 
