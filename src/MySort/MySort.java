@@ -34,6 +34,19 @@ public class MySort {
             }
         }
 
+    public void myInsertionSort() {
+        int i;
+        int j;
+        int temp;
+        for(j = 1; j < myList.length; j++) {
+            temp = myList[j];
+            for(i = j - 1; (i >= 0) && (myList[i] > temp); i--) {
+                myList[i + 1] = myList[i];
+            }
+            myList[i + 1] = temp;
+        }
+    }
+
     @Override
     public String toString() {
 
@@ -57,7 +70,7 @@ public class MySort {
 
     System.out.println(mySort);
 
-    mySort.myBubbleSort();
+    mySort.myInsertionSort();
 
     System.out.println(mySort);
 
