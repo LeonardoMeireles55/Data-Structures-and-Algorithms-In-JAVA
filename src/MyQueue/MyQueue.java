@@ -14,10 +14,6 @@ public class MyQueue<Element> {
         return currentNode == null;
     }
 
-    public int size() {
-        return size;
-    }
-
     public void enqueue(Element element) {
         NodeForQueue auxNode = previousNode;
         previousNode = new NodeForQueue();
