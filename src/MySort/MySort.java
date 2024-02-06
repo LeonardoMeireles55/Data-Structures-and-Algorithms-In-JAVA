@@ -36,7 +36,7 @@ public class MySort {
         }
     }
 
-    public void merge (int list[], int aux[], int initial, int middle, int end) {
+    public void merge (int[] list, int[] aux, int initial, int middle, int end) {
         for(int i = initial; i <= end; i++) {
             aux[i] = list[i];
         }
@@ -56,7 +56,7 @@ public class MySort {
         }
     }
 
-    public void myMergeSort(int list[], int aux[], int initial, int end) {
+    public void myMergeSort(int[] list, int[] aux, int initial, int end) {
         if (initial < end) {
             int middle = (initial + end) / 2;
             myMergeSort(list, aux, initial, middle);
@@ -83,12 +83,13 @@ public class MySort {
 
     public static void main(String[] args) {
 
-        MySort mySort = new MySort(4);
+        MySort mySort = new MySort(5);
 
         mySort.myList[0] = 9;
         mySort.myList[1] = 10;
         mySort.myList[2] = 8;
         mySort.myList[3] = 5;
+        mySort.myList[4] = 4;
 
         mySort.myMergeSort(mySort.myList,mySort.auxList, 0, mySort.myList.length - 1);
 
