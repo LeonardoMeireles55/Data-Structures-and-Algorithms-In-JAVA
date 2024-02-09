@@ -41,7 +41,7 @@ public class DoubleLinkedList<T> {
         listSize++;
     }
 
-    public NodeForList<T> searchByPosition(int position) {
+    private NodeForList<T> searchByPosition(int position) {
         if (!(position >= 0 && position < listSize)) {
             throw new IllegalArgumentException("Position not exists");
         }
@@ -106,12 +106,16 @@ public class DoubleLinkedList<T> {
     }
 
     public void removeLast() {
-        if(this.listSize == 0) {
+        if (listSize == 0) {
             throw new IllegalArgumentException("list is empty");
+        } else if (listSize == 1) {
+            initialNodeForList = null;
+            endNodeForList = null;
+        } else {
+            NodeForList<T> newLast = endNodeForList.previous;
+            newLast.next = null;
+            endNodeForList = newLast;
         }
-        endNodeForList.value = null;
-        endNodeForList.previous = null;
-        endNodeForList.next = null;
         listSize--;
     }
 
@@ -124,6 +128,19 @@ public class DoubleLinkedList<T> {
         if(listSize == 0) {
             endNodeForList = null;
         }
+    }
+
+    public int searchByElement(T element) {
+        NodeForList<T> currentNode = initialNodeForList;
+        int index = 0;
+        while (currentNode != null) {
+            if(currentNode.value.equals(element)) {
+                return index;
+            }
+            index++;
+            currentNode = currentNode.next;
+        }
+        return -1;
     }
 
 
@@ -151,11 +168,12 @@ public class DoubleLinkedList<T> {
         DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<Integer>();
         doubleLinkedList.add(1);
         doubleLinkedList.add(2);
+        doubleLinkedList.add(5);
         doubleLinkedList.add(3);
         doubleLinkedList.add(4);
-        doubleLinkedList.add(5);
 
-        System.out.println(doubleLinkedList.search(3));
-
+        doubleLinkedList.removeFirst();
+        doubleLinkedList.removeLast();
+        System.out.println(doubleLinkedList);
     }
 }
