@@ -31,7 +31,7 @@ public class LinkedListTest {
         list.removeFirst();
         list.remove(1);
 
-        System.out.println(list);
+        System.out.println(list.search(3));
 
     }
 }

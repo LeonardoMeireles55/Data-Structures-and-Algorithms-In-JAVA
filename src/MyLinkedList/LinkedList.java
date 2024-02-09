@@ -11,13 +11,13 @@ public class LinkedList<T> {
 
 
     public void add(T element) {
-        NodeForList<T> cell = new NodeForList<T>(element);
+        NodeForList<T> value = new NodeForList<T>(element);
         if (listSize == 0) {
-            initialNodeForList = cell;
+            initialNodeForList = value;
         } else {
-            endNodeForList.setNext(cell);
+            endNodeForList.setNext(value);
         }
-        endNodeForList = cell;
+        endNodeForList = value;
         listSize++;
     }
 
