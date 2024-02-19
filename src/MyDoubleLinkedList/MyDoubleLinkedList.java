@@ -1,11 +1,11 @@
-package DoubleLinkedList;
+package MyDoubleLinkedList;
 
-public class DoubleLinkedList<T> {
+public class MyDoubleLinkedList<T> {
     private NodeForList<T> initialNodeForList;
     private NodeForList<T> endNodeForList;
     private int listSize = 0;
 
-    public DoubleLinkedList() {
+    public MyDoubleLinkedList() {
         initialNodeForList = endNodeForList = null;
     }
 
@@ -148,7 +148,7 @@ public class DoubleLinkedList<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("DoubleLinkedList{size=").append(listSize).append(", elements=[");
+        sb.append("MyDoubleLinkedList{size=").append(listSize).append(", elements=[");
         NodeForList<T> currentNode = initialNodeForList;
 
         while (currentNode != null) {
@@ -165,15 +165,15 @@ public class DoubleLinkedList<T> {
     }
 
     public static void main(String[] args) {
-        DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<Integer>();
-        doubleLinkedList.add(1);
-        doubleLinkedList.add(2);
-        doubleLinkedList.add(5);
-        doubleLinkedList.add(3);
-        doubleLinkedList.add(4);
+        MyDoubleLinkedList<Integer> myDoubleLinkedList = new MyDoubleLinkedList<Integer>();
+        myDoubleLinkedList.add(1);
+        myDoubleLinkedList.add(2);
+        myDoubleLinkedList.add(5);
+        myDoubleLinkedList.add(3);
+        myDoubleLinkedList.add(4);
 
-        doubleLinkedList.removeFirst();
-        doubleLinkedList.removeLast();
-        System.out.println(doubleLinkedList);
+        myDoubleLinkedList.removeFirst();
+        myDoubleLinkedList.removeLast();
+        System.out.println(myDoubleLinkedList);
     }
 }
