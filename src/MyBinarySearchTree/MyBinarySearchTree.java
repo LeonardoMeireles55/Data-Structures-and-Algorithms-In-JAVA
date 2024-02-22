@@ -126,6 +126,15 @@ public class MyBinarySearchTree {
         }
     }
 
+    public int height() {
+        return height(this.root);
+    }
+
+    public int height(NodeForTree node) {
+        if(node == null) return -1;
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
+
     public static void main(String[] args) {
         MyBinarySearchTree myBinarySearchTree = new MyBinarySearchTree();
 
@@ -138,10 +147,8 @@ public class MyBinarySearchTree {
         myBinarySearchTree.add(11);
         myBinarySearchTree.add(10);
 
-        System.out.println(myBinarySearchTree.minValue());
         System.out.println(myBinarySearchTree.maxValue());
-        System.out.println(myBinarySearchTree.root.left.right.left);
-        System.out.println(myBinarySearchTree.predecessor(myBinarySearchTree.root.left.right.left));
+        System.out.println(myBinarySearchTree.height());
 
     }
 }
