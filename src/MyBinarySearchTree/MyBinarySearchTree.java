@@ -88,6 +88,13 @@ public class MyBinarySearchTree {
         return node.value;
     }
 
+    public int minValue(NodeForTree currentNode) {
+        while (currentNode.left != null) {
+            currentNode = currentNode.left;
+        }
+        return currentNode.value;
+    }
+
     public int maxValue() {
         NodeForTree node = this.root;
         while (node.right != null) {
@@ -135,6 +142,73 @@ public class MyBinarySearchTree {
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
+    public void delete(int value) {
+        root = deleteRecursive(root, value);
+    }
+
+    private boolean containsNodeRecursive(NodeForTree current, int value) {
+        if (current == null) {
+            return false;
+        }
+        if (value == current.value) {
+            return true;
+        }
+        return value < current.value
+                ? containsNodeRecursive(current.left, value)
+                : containsNodeRecursive(current.right, value);
+    }
+
+    public boolean containsNode(int value) {
+        return containsNodeRecursive(root, value);
+    }
+
+    private NodeForTree deleteRecursive(NodeForTree node, int value) {
+        if (node == null) {
+            return node;
+        }
+
+        if (value < node.value) {
+            node.left = deleteRecursive(node.left, value);
+        } else if (value > node.value) {
+            node.right = deleteRecursive(node.right, value);
+        } else {
+            if (node.left == null) {
+                return node.right;
+            } else if (node.right == null) {
+                return node.left;
+            }
+
+            node.value = minValue();
+            node.right = deleteRecursive(node.right, node.value);
+        }
+
+        return node;
+    }
+
+    public void preOrder() {
+        preOrder(this.root);
+    }
+
+    private void preOrder(NodeForTree node) {
+        if (node != null) {
+            System.out.println(node.value);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+
+    public void postOrder() {
+        postOrder(this.root);
+    }
+
+    private void postOrder(NodeForTree node) {
+        if (node != null) {
+            postOrder(node.left);
+            postOrder(node.right);
+            System.out.println(node.value);
+        }
+    }
+
     public static void main(String[] args) {
         MyBinarySearchTree myBinarySearchTree = new MyBinarySearchTree();
 
@@ -146,9 +220,7 @@ public class MyBinarySearchTree {
         myBinarySearchTree.add(15);
         myBinarySearchTree.add(11);
         myBinarySearchTree.add(10);
-
-        System.out.println(myBinarySearchTree.maxValue());
-        System.out.println(myBinarySearchTree.height());
+        myBinarySearchTree.postOrder();
 
     }
 }
