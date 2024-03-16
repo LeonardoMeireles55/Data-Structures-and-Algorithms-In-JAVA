@@ -7,15 +7,17 @@ public class MyHashTable {
 
     public MyHashTable(int size) {
         this.size = size;
-        table = new int[size];
+        table = new int[size * 100];
     }
+
     public void insert(int value) {
-        int index = (int) (((value * A) % 1) * size);
-        while (table[index] != 0) {
-            index = (index + 1) % size;
+        double index = (((value * A) % 1) * size);
+        while (table[((int) index)] != 0) {
+            index = (index + 1) * size;
         }
-        table[index] = value;
+        table[(int) index] = value;
     }
+
     public void delete(int value) {
         int index = (int) (((value * A) % 1) * size);
         while (table[index] != value) {
@@ -23,21 +25,24 @@ public class MyHashTable {
         }
         table[index] = 0;
     }
-    public boolean search(int value) {
-        int index = (int) (((value * A) % 1) * size);
-        while (table[index] != value) {
+
+    public String search(int value) {
+        double index = (((value * A) % 1) * size);
+        while (table[(int) index] != value) {
             index = (index + 1) % size;
-            if (table[index] == 0) {
-                return false;
+            if (table[(int) index] == 0) {
+                return "Not Found";
             }
         }
-        return true;
+        return "Found at index: " + (int) index + " Value: " + table[(int) index];
     }
-    public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println("Index: " + i + " Value: " + table[i]);
-        }
-    }
+
+    // public void print() {
+    //     for (int i = 0; i < size; i++) {
+    //         System.out.println("Index: " + i + " Value: " + table[i]);
+    //     }
+    // }
+
     public static void main(String[] args) {
         MyHashTable ht = new MyHashTable(10);
         ht.insert(10);
@@ -48,8 +53,9 @@ public class MyHashTable {
         ht.insert(60);
         ht.insert(70);
         ht.insert(80);
-        ht.insert(90);
         ht.insert(100);
-        ht.print();
+        // ht.print();
+
+        System.out.println(ht.search(25));
     }
 }

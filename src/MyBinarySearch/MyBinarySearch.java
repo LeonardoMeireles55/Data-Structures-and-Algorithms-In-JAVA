@@ -3,6 +3,17 @@ package MyBinarySearch;
 public class MyBinarySearch {
     public static int[] arr = { 2, 3, 4, 10, 40 };
 
+    public Boolean search(int number, int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == number) {
+                System.out.println("Found!");
+                return true;
+            }
+        }
+        System.out.println("Not found");
+        return false;
+    }
+
     public int binarySearch(int number, int[] arr) {
         int inital = 0;
         int end = arr.length - 1;
@@ -27,5 +38,6 @@ public class MyBinarySearch {
         MyBinarySearch myBinarySearch = new MyBinarySearch();
 
         myBinarySearch.binarySearch(2, MyBinarySearch.arr);
+        myBinarySearch.search(30, MyBinarySearch.arr);
     }
 }
