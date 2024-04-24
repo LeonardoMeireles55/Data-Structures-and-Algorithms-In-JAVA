@@ -1,15 +1,11 @@
 package MySort;
 
 public class MySort {
-
     private  int[] myList;
-    private  int[] auxList;
-
-    private Integer temp = 0;
+    private int temp;
 
     public MySort(int listSize) {
         myList = (int[]) new int[listSize];
-        auxList = (int[]) new int[listSize];
     }
 
     public void mySelecionSort() {
@@ -19,6 +15,7 @@ public class MySort {
                     temp = myList[i];
                     myList[i] = myList[j];
                     myList[j] = temp;
+                    System.out.println(this.myList[i] + " swapping... " + this.myList[j]);
                 }
             }
         }
@@ -82,20 +79,36 @@ public class MySort {
     public static void main(String[] args) {
 
         MySort mySort = new MySort(5);
-
+        
+    
         mySort.myList[0] = 9;
         mySort.myList[1] = 10;
         mySort.myList[2] = 8;
         mySort.myList[3] = 5;
         mySort.myList[4] = 4;
 
-        mySort.myMergeSort(mySort.myList,mySort.auxList, 0, mySort.myList.length - 1);
 
-        System.out.print("[");
-        for(int i = 0; i < mySort.myList.length - 1; i++) {
-            System.out.print("" + mySort.myList[i] + ", ");
-        }
-        System.out.print(mySort.myList[mySort.myList.length - 1]);
-        System.out.print("]");
+        mySort.mySelecionSort();
+
+        System.out.println(mySort.toString());
+
+
+
+
+
+
+
+
+
+
+
+        // mySort.myMergeSort(mySort.myList,mySort.auxList, 0, mySort.myList.length - 1);
+
+        // System.out.print("[");
+        // for(int i = 0; i < mySort.myList.length - 1; i++) {
+        //     System.out.print("" + mySort.myList[i] + ", ");
+        // }
+        // System.out.print(mySort.myList[mySort.myList.length - 1]);
+        // System.out.print("]");
     }
 }
