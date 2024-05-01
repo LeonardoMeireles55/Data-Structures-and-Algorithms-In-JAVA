@@ -1,7 +1,7 @@
 package MyBinarySearch;
 
 public class MyBinarySearch {
-    public static int[] arr = { 2, 3, 4, 10, 40 };
+    public static int[] arr = { 2, 3, 4, 10, 40, 50, 60, 70, 80, 90, 100 };
 
     public Boolean search(int number, int[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -25,7 +25,7 @@ public class MyBinarySearch {
                 System.out.println("Found!");
                 return middle;
             } else if (arr[middle] < number) {
-                return inital = middle + 1;
+                inital = middle + 1;
             } else {
                 end = middle - 1;
             }
@@ -37,7 +37,6 @@ public class MyBinarySearch {
     public static void main(String[] args) {
         MyBinarySearch myBinarySearch = new MyBinarySearch();
 
-        myBinarySearch.binarySearch(2, MyBinarySearch.arr);
-        myBinarySearch.search(30, MyBinarySearch.arr);
+        myBinarySearch.binarySearch(80, MyBinarySearch.arr);
     }
 }
