@@ -40,7 +40,8 @@ public class MyHashTable {
         }
         while (table[index] != 0) {
             sondage++;
-            System.out.println("Collision at index " + index + ", inserting with sondage " + sondage);
+            System.out.println("Collision at index " + index +
+             ", inserting with sondage " + sondage);
             index = hash((value + sondage), table.length);
         }
         table[index] = value;
