@@ -1,0 +1,88 @@
+public void myLeftJoin(int[] table1, int[] table2) {
+            int[] helper = new int[table1.length + table2.length];
+            int auxCounter = 0;
+            int[] result;
+            int resultCounter = 0;
+    
+            for (int i = 0; i < table1.length; i++) {
+                for (int j = 0; j < table2.length; j++) {
+                    if (table1[i] == table2[j] || table1[i] != table2[j] ) {
+                        helper[i] = table1[i];
+                    }
+                }
+            
+            }
+            for (int k = 0; k < helper.length; k++) {
+                if (helper[k] != 0) {
+                    auxCounter++;
+                }
+            }
+                result = new int[auxCounter];
+                for (int k = 0; k < helper.length; k++) {
+                    if (helper[k] != 0) {
+                        result[resultCounter] = helper[k];
+                        resultCounter++;
+                    }
+                }
+                System.out.println(Arrays.toString(result));
+            }
+
+        public void myRigthJoin(int[] table1, int[] table2) {
+            int[] helper = new int[table1.length + table2.length];
+            int auxCounter = 0;
+            int[] result;
+            int resultCounter = 0;
+    
+            for (int i = 0; i < table1.length; i++) {
+                for (int j = 0; j < table2.length; j++) {
+                    if (table1[i] == table2[j] || table1[i] != table2[j] ) {
+                        helper[i] = table2[j];
+                    }
+                }
+            
+            }
+            for (int k = 0; k < helper.length; k++) {
+                if (helper[k] != 0) {
+                    auxCounter++;
+                }
+            }
+                result = new int[auxCounter];
+                for (int k = 0; k < helper.length; k++) {
+                    if (helper[k] != 0) {
+                        result[resultCounter] = helper[k];
+                        resultCounter++;
+                    }
+                }
+                System.out.println(Arrays.toString(result));
+        }
+
+            public void myInnerJoin(int[] table1, int[] table2) {
+        int[] helper = new int[table1.length + table2.length];
+        int auxCounter = 0;
+        int[] result;
+        int resultCounter = 0;
+
+        for (int i = 0; i < table1.length; i++) {
+            for (int j = 0; j < table2.length; j++) {
+                if (table1[i] == table2[j]) {
+                    helper[i] = table1[i];
+                }
+            }
+        
+        }
+        for (int k = 0; k < helper.length; k++) {
+            if (helper[k] != 0) {
+                auxCounter++;
+            }
+        }
+            result = new int[auxCounter];
+            for (int k = 0; k < helper.length; k++) {
+                if (helper[k] != 0) {
+                    result[resultCounter] = helper[k];
+                    resultCounter++;
+                    System.out.println("Adding " + helper[k] + " to result");
+                }
+            }
+            System.out.println(Arrays.toString(result));
+        }
+
