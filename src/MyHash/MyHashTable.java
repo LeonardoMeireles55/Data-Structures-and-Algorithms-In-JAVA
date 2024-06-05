@@ -1,16 +1,22 @@
-package MyHashTable;
+package MyHash;
+
+import java.util.Arrays;
+
+import MySort.MySort;
 
 public class MyHashTable {
-    private int size;
-    private int[] table;
-    private double loadFactor = 0.75;
-    static final double A = 0.63274838;
+    public int size;
+    public int[] table;
+    public int[] finalList;
+    public double loadFactor = 0.75;
+    public static final double A = 0.63274838;
+    public MySort mySort;
 
     public int getSize() {
         return size;
     }
 
-    private static int hash(int value, int size) {
+    public static int hash(int value, int size) {
         return (int) (((value * A) % 1) * size);
     }
 
@@ -19,7 +25,7 @@ public class MyHashTable {
         this.table = new int[size];
     }
 
-    private void rehash() {
+    public void rehash() {
         int[] oldTable = table;
         table = new int[table.length * 2];
         for (int i = 0; i < oldTable.length; i++) {
@@ -92,6 +98,33 @@ public class MyHashTable {
             }
         }
     }
+
+    public void sortedPrint() {
+        mySort = new MySort(table.length);
+        int aux[] = new int[table.length];
+        int auxCounter = 0;
+        int helper = 0;
+
+        for (int i = 0; i < table.length; i++) {
+            if(table[i] != 0) {
+                auxCounter++;
+                mySort.myList[i] = table[i];
+            }
+            if(i == table.length - 1) {
+                finalList = new int[auxCounter];
+                mySort.myMergeSort(mySort.myList, aux, 0, mySort.myList.length - 1);
+                for(int j = 0; j < mySort.myList.length; j++) {
+                    if(mySort.myList[j] != 0) {
+                        finalList[helper] = mySort.myList[j];
+                        helper++;
+                    }
+                }
+            }
+        }
+        System.out.println("Sorted List:");
+        System.out.println(Arrays.toString(finalList));
+    }
+
 
     public static void main(String[] args) {
         MyHashTable ht = new MyHashTable(10);

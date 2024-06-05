@@ -1,7 +1,7 @@
 package MySort;
 
 public class MySort {
-    private  int[] myList;
+    public  int[] myList;
     private int temp;
 
     public MySort(int listSize) {
@@ -91,14 +91,6 @@ public class MySort {
         mySort.mySelecionSort();
 
         System.out.println(mySort.toString());
-
-
-
-
-
-
-
-
 
 
 
