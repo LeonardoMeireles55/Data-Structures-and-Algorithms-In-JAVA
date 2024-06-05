@@ -10,6 +10,8 @@ public class MyHashTable {
     public int[] finalList;
     public double loadFactor = 0.75;
     public static final double A = 0.63274838;
+    public boolean cotainsZero = false;
+
     public MySort mySort;
 
     public int getSize() {
@@ -37,6 +39,7 @@ public class MyHashTable {
     }
 
     public void insert(int value) {
+
         int sondage = 0;
         int index = hash((value + sondage), table.length);
         if (table[index] == value) {
@@ -77,7 +80,7 @@ public class MyHashTable {
         }
     }
 
-    public String search(int value) {
+    public Boolean search(int value) {
         int sondage = 0;
         int index = hash((value + sondage), table.length);
         while (table[index] != value) {
@@ -85,10 +88,13 @@ public class MyHashTable {
             System.out.println("searching with sondage " + sondage);
             index = hash((value + sondage), table.length);
             if (table[index] == 0 || sondage >= table.length) {
-                return "Not found";
+                System.out.println("Not found");
+                return false;
             }
         }
-        return "Found" + " at index " + index + " with sondage " + sondage + " value " + table[index];
+        System.out.println("Found" + " at index " + index + " with sondage " + sondage + " value " + table[index]);
+
+        return true;
     }
 
     public void print() {
