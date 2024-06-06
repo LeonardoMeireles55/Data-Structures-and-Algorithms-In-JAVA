@@ -25,28 +25,13 @@ public class LongSubStringWithoutRepetition {
         return max;
     }
 
-    private int recursiveMethod(String string, int start, int end) {
-        if (start == end) {
-            return 1;
-        }
-
-        if (string.charAt(start) == string.charAt(end)) {
-            return recursiveMethod(string, start + 1, end) + 2;
-        }
-
-        return Math.max(recursiveMethod(string, start + 1, end),
-         recursiveMethod(string, start, end - 1));
-    }
-
     public static void main(String[] args) {
         LongSubStringWithoutRepetition longSubStringWithoutRepetition 
         = new LongSubStringWithoutRepetition();
-        var string = "abcabc";
-        int start = 0;
-        int end = string.length() - 1;
+        var string = "abcabcx";
 
         System.out.println(
-            longSubStringWithoutRepetition.recursiveMethod(string, start, end)
+            longSubStringWithoutRepetition.lengthOfLongestSubstring(string)
         );
     }
 }
