@@ -11,5 +11,5 @@ This repository contains Java implementations of various commonly used data stru
 - [Binary Search](src/MyBinarySearch)
 - [Binary Search Tree](src/MyBinarySearchTree)
 - [Hash Table](src/MyHash)
-- [HashSet](src/MyHash)
+- [Hash Set](src/MyHash)
 - [Sorting Algorithms](src/MySort)
