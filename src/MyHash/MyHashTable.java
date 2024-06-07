@@ -49,15 +49,15 @@ public class MyHashTable {
         }
         while (table[index] != 0) {
             sondage++;
-            System.out.println("Collision at index " + index +
-             ", inserting with sondage " + sondage);
+            // System.out.println("Collision at index " + index +
+            //  ", inserting with sondage " + sondage);
             index = hash((value + sondage), table.length);
         }
         table[index] = value;
         size++;
 
         if ((double) size / table.length >= loadFactor) {
-            System.out.println("Resize and Rehashing");
+            // System.out.println("Resize and Rehashing");
             rehash();
         }
     }
@@ -105,13 +105,21 @@ public class MyHashTable {
         }
     }
 
-    public void sortedPrint() {
+    public int[] sortedPrint() {
+        boolean firstZero = false;
+
         mySort = new MySort(table.length);
         int aux[] = new int[table.length];
         int auxCounter = 0;
         int helper = 0;
 
         for (int i = 0; i < table.length; i++) {
+            if(table[i] == 0 && !firstZero) {
+                firstZero = true;
+                auxCounter++;
+                mySort.myList[i] = table[i];
+            }
+
             if(table[i] != 0) {
                 auxCounter++;
                 mySort.myList[i] = table[i];
@@ -127,8 +135,7 @@ public class MyHashTable {
                 }
             }
         }
-        System.out.println("Sorted List:");
-        System.out.println(Arrays.toString(finalList));
+        return finalList;
     }
 
 
