@@ -9,6 +9,7 @@ public class MyHashSet extends MyHashTable {
         super(size);
     }
 
+
     boolean isFirstZero(int zero, MyHashSet zeroHashSet) {
         if(zeroHashSet.size == 0) {
             zeroHashSet.insert(zero);
@@ -25,8 +26,7 @@ public class MyHashSet extends MyHashTable {
         int index = hash((value + sondage), table.length);
 
         if (table[index] == value && value != 0) {
-            table[index] = value;
-            throw new IllegalArgumentException("Value already exists");
+            return;
         }
         while (table[index] != 0) {
             sondage++;
@@ -102,6 +102,20 @@ public class MyHashSet extends MyHashTable {
             System.out.println(Arrays.toString(resultStream));
         }
 
+        public void myOuterJoin(int[] table1, int[] table2) {
+            MyHashSet helper = new MyHashSet(table1.length + table2.length);    
+            
+            for (int i = 0; i < table1.length; i++) {
+                helper.insert(table1[i]);
+            }
+            for (int i = 0; i < table2.length; i++) {
+                helper.insert(table2[i]);
+                }
+
+            System.out.println("Outer Join: ");
+            System.out.println(Arrays.toString(helper.sortedPrint()));
+        }
+
     public static void main(String[] args) {
         MyHashSet myHashSet = new MyHashSet(5);
         myHashSet.insert(0);
@@ -128,6 +142,9 @@ public class MyHashSet extends MyHashTable {
         (myHashSet.table, myHashSet2.table);
 
         myHashSet.myLeftJoinEnhanced
+        (myHashSet.table, myHashSet2.table);
+
+        myHashSet.myOuterJoin
         (myHashSet.table, myHashSet2.table);
     }
     
