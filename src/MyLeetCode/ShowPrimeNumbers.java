@@ -34,6 +34,6 @@ public class ShowPrimeNumbers {
     public static void main(String[] args) {
         ShowPrimeNumbers showPrimeNumbers = new ShowPrimeNumbers();
 
-        System.out.println(showPrimeNumbers.showPrimeNumbers(100.0));
+        System.out.println(showPrimeNumbers.showPrimeNumbers(10.0));
     }
 }
