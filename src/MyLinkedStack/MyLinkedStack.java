@@ -2,8 +2,6 @@ package MyLinkedStack;
 
 import java.util.NoSuchElementException;
 
-import javax.swing.text.html.parser.Element;
-
 @SuppressWarnings("hiding")
 public class MyLinkedStack<Element> {
     private NodeForStack node;
