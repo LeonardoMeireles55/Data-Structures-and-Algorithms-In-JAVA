@@ -7,18 +7,14 @@ import MySort.MySort;
 public class MyHashTable {
     public int size;
     public int[] table;
-    public int[] finalList;
     public double loadFactor = 0.75;
-    public static final double A = 0.63274838;
-    public boolean cotainsZero = false;
-
-    public MySort mySort;
+    private static final double A = 0.63274838;
 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
-    public static int hash(int value, int size) {
+    static int hash(int value, int size) {
         return (int) (((value * A) % 1) * size);
     }
 
@@ -27,54 +23,52 @@ public class MyHashTable {
         this.table = new int[size];
     }
 
-    public void rehash() {
-        int[] oldTable = table;
-        table = new int[table.length * 2];
+    void rehash() {
+        int[] oldTable = this.table;
+        this.table = new int[oldTable.length * 2];
         for (int i = 0; i < oldTable.length; i++) {
             int value = oldTable[i];
             if (value != 0) {
-                insert(value);
+                this.insert(value);
             }
         }
     }
 
     public void insert(int value) {
-
         int sondage = 0;
-        int index = hash((value + sondage), table.length);
-        if (table[index] == value) {
-            table[index] = value;
-            size++;
+        int index = hash((value + sondage), this.table.length);
+        if (this.table[index] == value) {
+            this.table[index] = value;
+            this.size++;
             return;
         }
-        while (table[index] != 0) {
+        while (this.table[index] != 0) {
             sondage++;
-            // System.out.println("Collision at index " + index +
-            //  ", inserting with sondage " + sondage);
-            index = hash((value + sondage), table.length);
+            // System.out.println("Collision at index " + index + ", inserting with sondage " + sondage);
+            index = hash((value + sondage), this.table.length);
         }
-        table[index] = value;
-        size++;
+        this.table[index] = value;
+        this.size++;
 
-        if ((double) size / table.length >= loadFactor) {
+        if ((double) this.size / this.table.length >= this.loadFactor) {
             // System.out.println("Resize and Rehashing");
-            rehash();
+            this.rehash();
         }
     }
 
-    public void delete(int value) {
+    void delete(int value) {
         int sondage = 0;
-        int index = hash((value + sondage), table.length);
-        if (table[index] == value) {
-            table[index] = 0;
-            size--;
+        int index = hash((value + sondage), this.table.length);
+        if (this.table[index] == value) {
+            this.table[index] = 0;
+            this.size--;
             return;
         }
-        while (table[index] != value) {
+        while (this.table[index] != value) {
             sondage++;
             System.out.println("deleting with sondage " + sondage);
-            index = hash((value + sondage), table.length);
-            if (table[index] == 0 || sondage >= table.length) {
+            index = hash((value + sondage), this.table.length);
+            if (this.table[index] == 0 || sondage >= this.table.length) {
                 return;
             }
         }
@@ -82,53 +76,72 @@ public class MyHashTable {
 
     public Boolean search(int value) {
         int sondage = 0;
-        int index = hash((value + sondage), table.length);
-        while (table[index] != value) {
+        int index = hash((value + sondage), this.table.length);
+        while (this.table[index] != value) {
             sondage++;
             System.out.println("searching with sondage " + sondage);
-            index = hash((value + sondage), table.length);
-            if (table[index] == 0 || sondage >= table.length) {
+            index = hash((value + sondage), this.table.length);
+            if (this.table[index] == 0 || sondage >= this.table.length) {
                 System.out.println("Not found");
                 return false;
             }
         }
-        System.out.println("Found" + " at index " + index + " with sondage " + sondage + " value " + table[index]);
+        System.out.println("Found" + " at index " + index + " with sondage " + sondage + " value " + this.table[index]);
 
         return true;
     }
 
-    public void print() {
-        for (int i = 0; i < table.length; i++) {
-            if (table[i] != 0) {
-                System.out.println("Index: " + i + " Value: " + table[i]);
+    public Boolean getIndex(int value) {
+        int sondage = 0;
+        int index = hash((value + sondage), this.table.length);
+        while (this.table[index] != value) {
+            sondage++;
+            System.out.println("searching with sondage " + sondage);
+            index = hash((value + sondage), this.table.length);
+            if (this.table[index] == 0 || sondage >= this.table.length) {
+                System.out.println("Not found");
+                return false;
+            }
+        }
+        System.out.println("Found" + " at index " + index + " with sondage " + sondage + " value " + this.table[index]);
+
+        return true;
+    }
+
+    void print() {
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.table[i] != 0) {
+                System.out.println("Index: " + i + " Value: " + this.table[i]);
             }
         }
     }
 
-    public int[] sortedPrint() {
+    int[] sortedPrint() {
+        MySort mySort;
+        int[] finalList = new int[0];
         boolean firstZero = false;
 
-        mySort = new MySort(table.length);
-        int aux[] = new int[table.length];
+        mySort = new MySort(this.table.length);
+        int[] aux = new int[this.table.length];
         int auxCounter = 0;
         int helper = 0;
 
-        for (int i = 0; i < table.length; i++) {
-            if(table[i] == 0 && !firstZero) {
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.table[i] == 0 && !firstZero) {
                 firstZero = true;
                 auxCounter++;
-                mySort.myList[i] = table[i];
+                mySort.myList[i] = this.table[i];
             }
 
-            if(table[i] != 0) {
+            if (this.table[i] != 0) {
                 auxCounter++;
-                mySort.myList[i] = table[i];
+                mySort.myList[i] = this.table[i];
             }
-            if(i == table.length - 1) {
+            if (i == this.table.length - 1) {
                 finalList = new int[auxCounter];
                 mySort.myMergeSort(mySort.myList, aux, 0, mySort.myList.length - 1);
-                for(int j = 0; j < mySort.myList.length; j++) {
-                    if(mySort.myList[j] != 0) {
+                for (int j = 0; j < mySort.myList.length; j++) {
+                    if (mySort.myList[j] != 0) {
                         finalList[helper] = mySort.myList[j];
                         helper++;
                     }
@@ -137,7 +150,6 @@ public class MyHashTable {
         }
         return finalList;
     }
-
 
     public static void main(String[] args) {
         MyHashTable ht = new MyHashTable(10);

@@ -25,19 +25,19 @@ public class MyHashSet extends MyHashTable {
         int sondage = 0;
         int index = hash((value + sondage), table.length);
 
-        if (table[index] == value && value != 0) {
+        if (this.table[index] == value && value != 0) {
             return;
         }
-        while (table[index] != 0) {
+        while (this.table[index] != 0) {
             sondage++;
             System.out.println("Collision at index " + index +
              ", inserting with sondage " + sondage);
-            index = hash((value + sondage), table.length);
+            index = hash((value + sondage), this.table.length);
         }
-        table[index] = value;
-        size++;
+        this.table[index] = value;
+        this.size++;
 
-        if ((double) size / table.length >= loadFactor) {
+        if ((double) size / this.table.length >= this.loadFactor) {
             System.out.println("Resize and Rehashing");
             rehash();
         }
@@ -103,8 +103,8 @@ public class MyHashSet extends MyHashTable {
         }
 
         public void myOuterJoin(int[] table1, int[] table2) {
-            MyHashSet helper = new MyHashSet(table1.length + table2.length);    
-            
+            MyHashSet helper = new MyHashSet(table1.length + table2.length);
+
             for (int i = 0; i < table1.length; i++) {
                 helper.insert(table1[i]);
             }
