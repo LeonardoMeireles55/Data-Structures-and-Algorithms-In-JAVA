@@ -1,6 +1,5 @@
 package MyHash;
 
-import java.util.Arrays;
 
 import MySort.MySort;
 
