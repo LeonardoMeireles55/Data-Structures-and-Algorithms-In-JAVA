@@ -2,8 +2,8 @@ package MyLinkedList;
 
 public class LinkedList<T> {
 
-    private NodeForList<T> initialNodeForList;
-    private NodeForList<T> endNodeForList;
+    public NodeForList<T> initialNodeForList;
+    public NodeForList<T> endNodeForList;
 
     private final int NOT_FOUND = -1;
 
@@ -166,11 +166,12 @@ public class LinkedList<T> {
 
         StringBuilder stringBuilder = new StringBuilder();
         NodeForList<T> currentNode = initialNodeForList;
+        stringBuilder.append("[");
         for(int i = 0; i < listSize - 1; i++) {
             stringBuilder.append(currentNode.getElement()).append(",");
             currentNode = currentNode.getNext();
         }
-        stringBuilder.append(currentNode.getElement()).append(".");
+        stringBuilder.append(currentNode.getElement()).append("]");
 
         return stringBuilder.toString();
     }
