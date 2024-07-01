@@ -6,6 +6,7 @@ This repository contains Java implementations of various commonly used data stru
 - [Linked List](src/MyLinkedList)
 - [Stack](src/MyStack)
 - [Queue](src/MyQueue)
+- [PriorityQueue](src/MyPriorityQueue)
 - [Linked Stack](src/MyLinkedStack)
 - [Double Linked List](src/MyDoubleLinkedList)
 - [Binary Search](src/MyBinarySearch)
@@ -13,3 +14,4 @@ This repository contains Java implementations of various commonly used data stru
 - [Hash Table](src/MyHash)
 - [Hash Set](src/MyHash)
 - [Sorting Algorithms](src/MySort)
+- [LeetCode](src/MyLeetCode)
