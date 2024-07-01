@@ -5,12 +5,6 @@ public class MyPriorityQueue<Element> {
     private NodeForPriorityQueue previousNode;
     private int size;
 
-    private enum priority {
-        LOW,
-        MEDIUM,
-        HIGH
-    }
-
     private class NodeForPriorityQueue<Element> {
         private Element element;
         private int priority;
