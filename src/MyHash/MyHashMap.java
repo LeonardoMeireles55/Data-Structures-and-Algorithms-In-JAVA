@@ -11,9 +11,9 @@ public class MyHashMap {
         }
     }
 
-    private static final double LOAD_FACTOR = 0.75; // Fator de carga recomendado
+    private static final double LOAD_FACTOR = 0.75;
     private int size;
-    private int used; // Número de elementos no mapa
+    private int used;
     private Pair[] map;
 
     public MyHashMap(int size) {
@@ -23,7 +23,7 @@ public class MyHashMap {
     }
 
     private int hash(int key) {
-        return Math.abs(key % size); // Garante um índice não negativo
+        return Math.abs(key % size);
     }
 
     private void rehash() {
@@ -47,7 +47,7 @@ public class MyHashMap {
 
         int index = hash(key);
         while (map[index] != null && map[index].key != key) {
-            index = (index + 1) % size; // Sondagem linear
+            index = (index + 1) % size;
         }
         if (map[index] == null) {
             map[index] = new Pair(key, value);
@@ -63,9 +63,9 @@ public class MyHashMap {
             if (map[index].key == key) {
                 return map[index].value;
             }
-            index = (index + 1) % size; // Sondagem linear
+            index = (index + 1) % size;
         }
-        return -1; // ou lançar uma exceção
+        return -1;
     }
 
     public boolean contains(int key) {
@@ -74,7 +74,7 @@ public class MyHashMap {
             if (map[index].key == key) {
                 return true;
             }
-            index = (index + 1) % size; // Sondagem linear
+            index = (index + 1) % size;
         }
         return false;
     }
