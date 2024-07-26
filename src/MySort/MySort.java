@@ -8,7 +8,19 @@ public class MySort {
         myList = (int[]) new int[listSize];
     }
 
-    public void mySelecionSort() {
+    public void myInsertionSort() {
+        for(int i = 1; i < myList.length; i++) {
+            int currentElement = myList[i];
+            int j = i - 1;
+            while(j >= 0 && myList[j] > currentElement) {
+                myList[j + 1] = myList[j];
+                j = j - 1;
+            }
+            myList[j + 1] = currentElement;
+        }
+}
+
+    public void mySelectionSort() {
         for (int i = 0; i < myList.length; i++) {
             for (int j = i + 1; j < myList.length; j++) {
                 if (myList[i] > myList[j]) {
@@ -88,7 +100,8 @@ public class MySort {
         mySort.myList[4] = 4;
 
 
-        mySort.mySelecionSort();
+//        mySort.mySelectionSort();
+        mySort.myInsertionSort();
 
         System.out.println(mySort.toString());
 
