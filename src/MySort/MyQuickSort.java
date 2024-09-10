@@ -8,6 +8,7 @@ public class MyQuickSort {
     }
 
     private void swap(int i, int j) {
+        if (i == j) return;
         int temp = array[i]; // Guarda o valor do array na posição i
         array[i] = array[j]; // Faz o swap
         array[j] = temp; // Recupera o valor guardado e atribui a posição j
@@ -19,7 +20,7 @@ public class MyQuickSort {
 
         for (int j = low; j < high; j++) {
             if (array[j] < pivot) {
-                i++;    
+                i++;  // Incrementa o índice dos menores elementos
                 swap(i, j);
             }
         }
