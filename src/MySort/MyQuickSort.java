@@ -18,7 +18,7 @@ public class MyQuickSort {
         int i = low - 1;  // Índice para os menores elementos
 
         for (int j = low; j < high; j++) {
-            if (array[j] >= pivot) {
+            if (array[j] < pivot) {
                 i++;    
                 swap(i, j);
             }
@@ -46,7 +46,7 @@ public class MyQuickSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5};
+        int[] array = { 10, 7, 8, 9, 1, 5 };
         MyQuickSort myQuickSort = new MyQuickSort(array);
         System.out.println("Array before sorting:");
         myQuickSort.printArray();
