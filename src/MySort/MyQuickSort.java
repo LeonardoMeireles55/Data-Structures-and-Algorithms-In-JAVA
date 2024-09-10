@@ -19,7 +19,7 @@ public class MyQuickSort {
 
         for (int j = low; j < high; j++) {
             if (array[j] >= pivot) {
-                i++;
+                i++;    
                 swap(i, j);
             }
         }
@@ -39,12 +39,19 @@ public class MyQuickSort {
         quickSort(0, array.length - 1);
     }
 
+    public void printArray() {
+        for (int i : array) {
+            System.out.print(i  + " ");
+        }
+    }
+
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 4, 5};
         MyQuickSort myQuickSort = new MyQuickSort(array);
+        System.out.println("Array before sorting:");
+        myQuickSort.printArray();
         myQuickSort.sort();
-        for (int i : array) {
-            System.out.println(i);
-        }
+        System.out.println("\nArray after sorting:");
+        myQuickSort.printArray();
     }
 }
