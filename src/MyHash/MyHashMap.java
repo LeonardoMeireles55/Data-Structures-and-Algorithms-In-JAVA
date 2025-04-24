@@ -1,38 +1,67 @@
 package MyHash;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * A generic hash map implementation with linear probing collision resolution.
+ *
+ * @param <K> Key type
+ * @param <V> Value type
+ */
 public class MyHashMap<K, V> {
 
+	/**
+	 * Internal class to represent a key-value pair.
+	 *
+	 * @param <K> Key type
+	 * @param <V> Value type
+	 */
 	private class Pair<K, V> {
-		K key;
-		V value;
+		private final K key;
+		private V value;
 
+		/**
+		 * Constructs a key-value pair.
+		 *
+		 * @param key The key
+		 * @param value The value
+		 */
 		Pair(K key, V value) {
 			this.key = key;
 			this.value = value;
 		}
 	}
 
-	private static final double LOAD_FACTOR = 0.75;
-	private int capacity;
-	private int size;
+	private static final Double LOAD_FACTOR = 0.75;
+	private Integer capacity;
+	private Integer size;
 	private Pair<K, V>[] map;
 
-	public MyHashMap(int capacity) {
+	/**
+	 * Constructs a hash map with the specified initial capacity.
+	 *
+	 * @param capacity Initial capacity of the hash map
+	 */
+	public MyHashMap(Integer capacity) {
 		this.capacity = capacity;
 		this.size = 0;
 		this.map = new Pair[capacity];
 	}
 
-	private int hash(K key) {
+	/**
+	 * Computes the hash code for a key.
+	 *
+	 * @param key The key to hash
+	 * @return The hash code
+	 */
+	private Integer hash(K key) {
 		return Math.abs(key.hashCode() % capacity);
 	}
 
+	/**
+	 * Resizes the hash map when the load factor threshold is reached.
+	 */
 	private void rehash() {
-		int newSize = capacity * 2;
-		Pair[] oldMap = map;
+		Integer newSize = capacity * 2;
+		Pair<K, V>[] oldMap = map;
 		map = new Pair[newSize];
 		capacity = newSize;
 		size = 0;
@@ -44,15 +73,25 @@ public class MyHashMap<K, V> {
 		}
 	}
 
+	/**
+	 * Removes a key-value pair from the hash map.
+	 *
+	 * @param key The key to remove
+	 */
 	public void delete(K key) {
-		int index = hash(key);
+		if (key == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
+		Integer index = hash(key);
 
 		while (map[index] != null) {
 			if (map[index].key.equals(key)) {
 				map[index] = null;
 				size--;
 
-				int nextIndex = (index + 1) % capacity;
+				// Rehash all elements in the same cluster
+				Integer nextIndex = (index + 1) % capacity;
 				while (map[nextIndex] != null) {
 					Pair<K, V> pairToRehash = map[nextIndex];
 					map[nextIndex] = null;
@@ -68,30 +107,52 @@ public class MyHashMap<K, V> {
 		System.out.println("Key not found: " + key);
 	}
 
+	/**
+	 * Adds a key-value pair to the hash map.
+	 *
+	 * @param key The key
+	 * @param value The value
+	 * @throws IllegalArgumentException if key is null
+	 */
 	public void put(K key, V value) {
+		if (key == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
 		if ((double) size / capacity >= LOAD_FACTOR) {
 			rehash();
 		}
 
 		if (contains(key)) {
-			value = null;
 			delete(key);
 		}
 
-		int index = hash(key);
-		while (map[index] != null && map[index].key != key) {
+		Integer index = hash(key);
+		while (map[index] != null && !map[index].key.equals(key)) {
 			index = (index + 1) % capacity;
 		}
+
 		if (map[index] == null) {
-			map[index] = new Pair(key, value);
+			map[index] = new Pair<>(key, value);
 			size++;
 		} else {
 			map[index].value = value;
 		}
 	}
 
+	/**
+	 * Gets the value associated with the specified key.
+	 *
+	 * @param key The key
+	 * @return The value associated with the key or null if not found
+	 * @throws IllegalArgumentException if key is null
+	 */
 	public V get(K key) {
-		int index = hash(key);
+		if (key == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
+		Integer index = hash(key);
 		while (map[index] != null) {
 			if (map[index].key.equals(key)) {
 				return map[index].value;
@@ -101,42 +162,82 @@ public class MyHashMap<K, V> {
 		return null;
 	}
 
+	/**
+	 * Gets the first non-null value in the hash map.
+	 *
+	 * @return The first non-null value
+	 * @throws IllegalStateException if the hash map is empty
+	 */
 	public V getValue() {
 		for (Pair<K, V> pair : map) {
 			if (pair != null && pair.value != null) {
 				return pair.value;
 			}
 		}
-
-		throw new Error();
+		throw new IllegalStateException("Hash map is empty");
 	}
 
+	/**
+	 * Checks if the hash map contains the specified key.
+	 *
+	 * @param key The key to check
+	 * @return true if the key exists, false otherwise
+	 * @throws IllegalArgumentException if key is null
+	 */
 	public boolean contains(K key) {
-		int index = hash(key);
+		if (key == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
+		Integer index = hash(key);
 		while (map[index] != null) {
 			if (map[index].key.equals(key)) {
 				return true;
 			}
 			index = (index + 1) % capacity;
 		}
-
 		return false;
 	}
 
+	/**
+	 * Returns the size of the hash map.
+	 *
+	 * @return The number of key-value pairs in the hash map
+	 */
+	public Integer size() {
+		return size;
+	}
+
+	/**
+	 * Checks if the hash map is empty.
+	 *
+	 * @return true if the hash map is empty, false otherwise
+	 */
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	/**
+	 * Returns a string representation of the hash map.
+	 *
+	 * @return String representation of the hash map
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("MyHashMap[");
-		for (int i = 0; i < capacity; i++) {
+		boolean first = true;
+
+		for (Integer i = 0; i < capacity; i++) {
 			if (map[i] != null && map[i].value != null) {
-				sb.append(map[i].value).append(",");
+				if (!first) {
+					sb.append(", ");
+				}
+				first = false;
+				sb.append(map[i].value);
 			}
-		}
-		if (sb.length() > 10) {
-			sb.setLength(sb.length() - 1);
 		}
 		sb.append("]");
 		return sb.toString();
 	}
-
 }

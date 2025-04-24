@@ -1,6 +1,5 @@
 package MyBinarySearchTree;
 
-
 public class MyBinarySearchTree {
 
     static class NodeForTree {
@@ -23,6 +22,7 @@ public class MyBinarySearchTree {
                     '}';
         }
     }
+
     private NodeForTree root;
 
     public boolean isEmpty() {
@@ -67,13 +67,13 @@ public class MyBinarySearchTree {
         NodeForTree auxNode = this.root;
 
         while (auxNode != null) {
-            if(auxNode.value == value) {
+            if (auxNode.value == value) {
                 return auxNode;
             }
-            if(value < auxNode.value) {
+            if (value < auxNode.value) {
                 auxNode = auxNode.left;
             }
-            if(value > auxNode.value) {
+            if (value > auxNode.value) {
                 auxNode = auxNode.right;
             }
         }
@@ -104,32 +104,32 @@ public class MyBinarySearchTree {
     }
 
     public int successor(NodeForTree node) {
-        if(node == null) return -1;
-        if(node.right != null) {
+        if (node == null)
+            return -1;
+        if (node.right != null) {
             return this.minValue();
-        }
-        else {
+        } else {
             NodeForTree auxNode = node.parent;
 
             while (auxNode != null && auxNode.value < node.value) {
                 auxNode = auxNode.parent;
             }
-            return auxNode.value;
+            return auxNode != null ? auxNode.value : -1;
         }
     }
 
     public int predecessor(NodeForTree node) {
-        if(node == null) return -1;
-        if(node.left != null) {
+        if (node == null)
+            return -1;
+        if (node.left != null) {
             return this.minValue();
-        }
-        else {
+        } else {
             NodeForTree auxNode = node.parent;
 
             while (auxNode != null && auxNode.value > node.value) {
                 auxNode = auxNode.parent;
             }
-            return auxNode.value;
+            return auxNode != null ? auxNode.value : -1;
         }
     }
 
@@ -138,7 +138,8 @@ public class MyBinarySearchTree {
     }
 
     public int height(NodeForTree node) {
-        if(node == null) return -1;
+        if (node == null)
+            return -1;
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
@@ -224,7 +225,3 @@ public class MyBinarySearchTree {
 
     }
 }
-
-
-
-

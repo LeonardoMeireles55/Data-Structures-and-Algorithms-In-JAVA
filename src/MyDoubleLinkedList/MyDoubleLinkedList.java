@@ -86,12 +86,11 @@ public class MyDoubleLinkedList<T> {
                 initialNodeForList.setPrevious(newNode);
             }
             initialNodeForList = newNode;
-        } else if (position == listSize-1) {
+        } else if (position == listSize - 1) {
             endNodeForList.setNext(newNode);
             newNode.setPrevious(endNodeForList);
             endNodeForList = newNode;
-        }
-        else {
+        } else {
             NodeForList<T> current = initialNodeForList;
             for (int i = 0; i < position; i++) {
                 current = current.next;
@@ -120,12 +119,12 @@ public class MyDoubleLinkedList<T> {
     }
 
     public void removeFirst() {
-        if(listSize == 0) {
+        if (listSize == 0) {
             throw new IllegalArgumentException("list is empty");
         }
         initialNodeForList = initialNodeForList.next;
         listSize--;
-        if(listSize == 0) {
+        if (listSize == 0) {
             endNodeForList = null;
         }
     }
@@ -134,7 +133,7 @@ public class MyDoubleLinkedList<T> {
         NodeForList<T> currentNode = initialNodeForList;
         int index = 0;
         while (currentNode != null) {
-            if(currentNode.value.equals(element)) {
+            if (currentNode.value.equals(element)) {
                 return index;
             }
             index++;
@@ -142,8 +141,6 @@ public class MyDoubleLinkedList<T> {
         }
         return -1;
     }
-
-
 
     @Override
     public String toString() {
@@ -165,7 +162,7 @@ public class MyDoubleLinkedList<T> {
     }
 
     public static void main(String[] args) {
-        MyDoubleLinkedList<Integer> myDoubleLinkedList = new MyDoubleLinkedList<Integer>();
+        MyDoubleLinkedList<Integer> myDoubleLinkedList = new MyDoubleLinkedList<>();
         myDoubleLinkedList.add(1);
         myDoubleLinkedList.add(2);
         myDoubleLinkedList.add(5);

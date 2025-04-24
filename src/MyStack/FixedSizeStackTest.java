@@ -14,8 +14,6 @@ public class FixedSizeStackTest {
         fixedSizeStack.push(13);
         fixedSizeStack.pop();
 
-
-
         System.out.println(fixedSizeStack);
     }
 }
